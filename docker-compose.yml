@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: your_database_name
+      MYSQL_USER: your_username
+      MYSQL_PASSWORD: your_password
+      MYSQL_ROOT_PASSWORD: your_root_password
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - DB_HOST=db
+      - DB_NAME=your_database_name
+      - DB_USER=your_username
+      - DB_PASS=your_password
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  db_data:

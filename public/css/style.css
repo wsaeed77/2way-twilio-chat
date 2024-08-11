@@ -1,0 +1,110 @@
+body {
+
+}
+
+.sidebar-border {
+    border: 1px solid #f0f0f0; /* Light grey border */
+    /*width: 350px;*/
+}
+
+.position-relative .fixed-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.full-width-input {
+    width: 100%;
+}
+
+.conversation-card.active {
+    background-color: #f0f0f0; /* Example background color for active state */
+    border-left: 5px solid #007bff; /* Example border to indicate active state */
+}
+
+.fixed-at-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.date-separator {
+    background-color: #f0f0f0; /* Light grey background */
+    color: #333; /* Dark text color for contrast */
+    border-radius: 20px; /* Rounded corners */
+    margin: 10px auto; /* Centering and spacing */
+    width: fit-content; /* Only as wide as its content */
+    padding: 5px 20px; /* Padding for visual space around the text */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    font-weight: bold; /* Make the text bold */
+}
+
+.scrollable-content {
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 800px; /* Limit the height of the content */
+}
+
+.outboundbtn {
+    background-image: linear-gradient(80deg, rgb(115, 103, 240), rgb(158, 149, 245));
+    border-radius: 4.998px;
+    box-shadow: #22292f1f 0px 4px 8px 0px;
+    color: #6e6b7b;
+    font-size: 14px;
+    letter-spacing: 0.14px;
+    line-height: 20.3px;
+    margin: 0px 0px 10px 14px;
+    padding: 9.8px 14px;
+    position: relative;
+    min-width: 115px;
+}
+
+.inboundbtn {
+    background-color: #ffffff;
+    border-radius: 4.998px;
+    box-shadow: #22292f1f 0px 4px 8px 0px;
+    color: #6e6b7b;
+    font-size: 14px;
+    letter-spacing: 0.14px;
+    line-height: 20.3px;
+    margin: 0px 0px 10px 14px;
+    padding: 9.8px 14px;
+    position: relative;
+    min-width: 115px;
+}
+
+.container-bgk{
+    background-image: url(/public/images/bg.svg);
+    background-color: #f2f0f7;
+    background-repeat: repeat;
+    background-size: 210px;
+}
+.round-pill-top-right {
+    position: absolute;
+    top: 80px;
+    right: 100px;
+    background-color: #ffffff;
+    border-radius: 4.998px;
+    box-shadow: #22292f1f 0px 4px 8px 0px;
+    color: #6e6b7b;
+    font-size: 14px;
+    letter-spacing: 0.14px;
+    line-height: 20.3px;
+    padding: 10px 20px; /* Increased padding for a bigger size */
+    border-radius: 10px; /* Adjusted for a rounded square shape */
+    font-size: 1em; /* Increased font size */
+    z-index: 2; /* Ensure it's above other content */
+}
+
+.message-time {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    top: 30px;
+}
+.buttonload {
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    font-size: 16px; /* Set a font-size */
+    background: transparent; /* Make background transparent */
+}
+
+/* Add a right margin to each icon */

@@ -4,6 +4,6 @@ variable "db_username" {
 }
 
 variable "db_default_password" {
-  description = "initial password for db"
+  description = "initial password for datbase"
   default = ""
 }

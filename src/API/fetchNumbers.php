@@ -2,7 +2,7 @@
 
 namespace Chattermax\API;
 
-require_once __DIR__ . '/../../vendor/autoload.php'; // Include Composer's autoload file
+require_once __DIR__ . '/../../vendor/autoload.php'; 
 
 use Chattermax\DB\PhoneNumberManager;
 

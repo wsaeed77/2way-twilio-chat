@@ -2,34 +2,43 @@
 
 namespace Chattermax\API;
 
-require_once __DIR__ . '/../../vendor/autoload.php'; // Include Composer's autoload file
+require_once __DIR__ . '/../../vendor/autoload.php'; // Autoload dependencies
 
 use Chattermax\DB\ConversationManager;
 use Chattermax\Config\Helper;
 
-$fromNumber = Helper::formatPhoneNumber($_POST['From']);
-$toNumber = isset($_POST['To']) ? Helper::formatPhoneNumber($_POST['To']) : '';
-$messageBody = isset($_POST['Body']) ? $_POST['Body'] : '';
+// Helper function to return a structured response and exit
+function sendResponse($success, $message, $statusCode) {
+    echo json_encode([
+        'success' => $success,
+        'message' => $message,
+        'status'  => $statusCode
+    ]);
+    exit;
+}
+
+// Sanitize and format input
+$fromNumber = Helper::formatPhoneNumber(trim($_POST['From'] ?? ''));
+$toNumber = Helper::formatPhoneNumber(trim($_POST['To'] ?? ''));
+$messageBody = trim($_POST['Body'] ?? '');
 $direction = 'inbound'; // Default direction
 
-$response = ['success' => false, 'message' => '','status'=>''];
-
+// Check for required fields
 if (empty($fromNumber) || empty($toNumber) || empty($messageBody)) {
-    $response['message'] = 'Missing required fields.';
-    $response['status']=400;
-    echo json_encode($response);
-    exit;
+    sendResponse(false, 'Missing required fields.', 400);
 }
 
 $manager = new ConversationManager();
 
 try {
+    // Insert conversation and message
     $conversationId = $manager->insertConversationAndMessage($toNumber, $fromNumber, $messageBody, $direction);
-    $response['success'] = true;
-    $response['status'] = 200;
-    $response['message'] = 'Conversation and message created successfully.';
-} catch (Exception $e) {
-    $response['message'] = 'Failed to create conversation and message: ' . $e->getMessage();
+
+    // Send success response
+    sendResponse(true, 'Conversation and message created successfully.', 200);
+
+} catch (\Throwable $e) {  // Catch all types of errors (including exceptions and other critical issues)
+    // Handle failure scenario with appropriate error message
+    sendResponse(false, 'Failed to create conversation and message: ' . $e->getMessage(), 500);
 }
 
-echo json_encode($response);
